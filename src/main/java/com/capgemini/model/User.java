@@ -21,17 +21,21 @@ public class User {
 	
 	@Column(name="password")
 	private String userPassword;
+	
+	@Column(name="role")
+	private Role role;
 
 	public User() {
 		super();
 		
 	}
 
-	public User(int loginId, String userName, String userPassword) {
+	public User(int loginId, String userName, String userPassword, Role role) {
 		super();
 		this.loginId = loginId;
 		this.userName = userName;
 		this.userPassword = userPassword;
+		this.role = role;
 	}
 
 	public int getLoginId() {
@@ -58,11 +62,21 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return  "User [loginId=" + loginId + ", userName=" + userName + ", userPassword=" + userPassword + "]";
+		return "User [loginId=" + loginId + ", userName=" + userName + ", userPassword=" + userPassword + ", role="
+				+ role + "]";
 	}
+
+	
 
 	
 

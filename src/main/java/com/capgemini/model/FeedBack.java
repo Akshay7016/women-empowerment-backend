@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 @Entity
 @Table(name="feedback_table")
 public class FeedBack {
@@ -33,8 +35,11 @@ public class FeedBack {
 	@Column
 	private	LocalDate feedbackdate;
 	
-//	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@JoinColumn(name="courseId")
+	private TrainingCourse trainingCourse;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "scheme")
 	private Scheme scheme;
 
@@ -43,7 +48,7 @@ public class FeedBack {
 	}
 
 	public FeedBack(int feedBackId, int schemeRating, int schemeTrainingRating, int overallRating, String comments,
-			LocalDate feedbackdate,Scheme scheme) {
+			LocalDate feedbackdate, TrainingCourse trainingCourse, Scheme scheme) {
 		super();
 		this.feedBackId = feedBackId;
 		this.schemeRating = schemeRating;
@@ -51,15 +56,7 @@ public class FeedBack {
 		this.overallRating = overallRating;
 		this.comments = comments;
 		this.feedbackdate = feedbackdate;
-		this.scheme=scheme;
-	}
-
-
-	public Scheme getScheme() {
-		return scheme;
-	}
-
-	public void setScheme(Scheme scheme) {
+		this.trainingCourse = trainingCourse;
 		this.scheme = scheme;
 	}
 
@@ -111,16 +108,28 @@ public class FeedBack {
 		this.feedbackdate = feedbackdate;
 	}
 
+	public TrainingCourse getTrainingCourse() {
+		return trainingCourse;
+	}
+
+	public void setTrainingCourse(TrainingCourse trainingCourse) {
+		this.trainingCourse = trainingCourse;
+	}
+
+	public Scheme getScheme() {
+		return scheme;
+	}
+
+	public void setScheme(Scheme scheme) {
+		this.scheme = scheme;
+	}
+
 	@Override
 	public String toString() {
 		return "FeedBack [feedBackId=" + feedBackId + ", schemeRating=" + schemeRating + ", schemeTrainingRating="
 				+ schemeTrainingRating + ", overallRating=" + overallRating + ", comments=" + comments
-				+ ", feedbackdate=" + feedbackdate + ", scheme=" + scheme + "]";
+				+ ", feedbackdate=" + feedbackdate + ", trainingCourse=" + trainingCourse + ", scheme=" + scheme + "]";
 	}
-
-
-	
-	
 
 
 }
