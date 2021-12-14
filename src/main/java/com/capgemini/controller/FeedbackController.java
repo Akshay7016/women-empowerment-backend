@@ -89,11 +89,11 @@ public class FeedbackController implements IFeedBackController{
 		ResponseEntity<FeedBack> response = new ResponseEntity<>(sch, headers, HttpStatus.OK);
 		return response;
 	}
-//	// -------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------
 //	@GetMapping("/viewFeedBackBySchemeName")
 //	public ResponseEntity<List<FeedBack>> viewFeedBackBySchemeName(String SchemeName) {
 //		LOG.info("Controller viewFeedBackBySchemeName");
-//		List<FeedBack> viewFeedBackBySchemeName = feedbackService.viewFeedBackBySchemeName();
+//		List<FeedBack> viewFeedBackBySchemeName = feedbackService.feedBackBySchemeName(SchemeName);
 //		HttpHeaders headers = new HttpHeaders();
 //		headers.add("message", "Data of feedback with " + SchemeName + " retrived successfully from the database");
 //		LOG.info(headers.toString());
@@ -106,7 +106,7 @@ public class FeedbackController implements IFeedBackController{
 //	@GetMapping("/viewFeedBackByTrainingCourseName")
 //	public ResponseEntity<List<FeedBack>> viewFeedBackByTrainingCourseName(String TrainingCourseName) {
 //		LOG.info("Controller viewFeedBackByTrainingCourseName");
-//		List<FeedBack> viewFeedBackByTrainingCourseName = feedbackService.viewFeedBackByTrainingCourseName();
+//		List<FeedBack> viewFeedBackByTrainingCourseName = feedbackService.feedBackByTrainingCourseName(TrainingCourseName);
 //		HttpHeaders headers = new HttpHeaders();
 //		headers.add("message",
 //				"Data of feedback with " + TrainingCourseName + " retrived successfully from the database");

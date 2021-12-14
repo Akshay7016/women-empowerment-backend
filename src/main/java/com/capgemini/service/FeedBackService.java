@@ -12,21 +12,18 @@ import com.capgemini.exception.FeedBackAlreadyExistsException;
 import com.capgemini.exception.FeedBackNotFoundException;
 import com.capgemini.model.FeedBack;
 import com.capgemini.repository.IFeedBackRepository;
-
-
+import com.capgemini.repository.ISchemeRepository;
 
 @Service
-public class FeedBackService implements IFeedBackService{
-	
+public class FeedBackService implements IFeedBackService {
+
 	private static final Logger LOG = LoggerFactory.getLogger(FeedBackService.class);
-	 
+
 	@Autowired
 	private IFeedBackRepository ifeedbackrepository;
-	
-	
+
 	@Override
-	public FeedBack addFeedBack(FeedBack feedback) 
-	{
+	public FeedBack addFeedBack(FeedBack feedback) {
 		LOG.info("Service addfeedback");
 		boolean feedbackOpt = ifeedbackrepository.existsById(feedback.getFeedBackId());
 		if (!feedbackOpt) {
@@ -35,6 +32,7 @@ public class FeedBackService implements IFeedBackService{
 			throw new FeedBackAlreadyExistsException(feedback + " is already exists.");
 		}
 	}
+
 // -------------------------------------------------------------------------------------------
 	@Override
 	public FeedBack updateFeedBack(FeedBack feedback) {
@@ -44,10 +42,9 @@ public class FeedBackService implements IFeedBackService{
 			return ifeedbackrepository.save(feedback);
 		else
 			throw new FeedBackNotFoundException(feedback + " not found.");
-			
-		}
-		
-	
+
+	}
+
 // -------------------------------------------------------------------------------------------
 	@Override
 	public FeedBack viewFeedBack(int feedbackId) {
@@ -58,7 +55,8 @@ public class FeedBackService implements IFeedBackService{
 		else
 			throw new FeedBackNotFoundException("feedback Id: " + feedbackId + " not found.");
 	}
-	// -------------------------------------------------------------------------------------------	
+
+	// -------------------------------------------------------------------------------------------
 	@Override
 	public List<FeedBack> viewAllFeedBack() {
 		LOG.info("Service viewAllfeedback");
@@ -69,7 +67,7 @@ public class FeedBackService implements IFeedBackService{
 			throw new FeedBackNotFoundException(" not found.");
 		}
 	}
-	
+
 	@Override
 	public FeedBack deleteFeedback(int feedbackId) {
 		LOG.info("Service deletefeedback");
@@ -81,20 +79,19 @@ public class FeedBackService implements IFeedBackService{
 			throw new FeedBackNotFoundException("feedback Id: " + feedbackId + " not found.");
 		}
 	}
-	
-	
+
 // -------------------------------------------------------------------------------------------
 //	@Override
-//	public List<FeedBack> viewFeedBackBySchemeName() {
-//		
+//	public List<FeedBack> feedBackBySchemeName(String schemeName) {
+//
 //		LOG.info("Service viewFeedBackBySchemeName");
-//		List<FeedBack> feedbackOpt = ifeedbackrepository.findBySchemeName(schemeName);
+//		List<FeedBack> feedbackOpt = ISchemeRepository.findBySchemeName(schemeName);
 //		if (!feedbackOpt.isEmpty())
 //			return feedbackOpt;
 //		else
 //			throw new FeedBackNotFoundException("viewFeedBackBy \" " + schemeName + "\" is not found.");
-//			}
-//	
+//	}
+
 // -------------------------------------------------------------------------------------------
 //	@Override
 //	public List<FeedBack> viewFeedBackByTrainingCourseName() {
@@ -104,10 +101,9 @@ public class FeedBackService implements IFeedBackService{
 //			return feedbackOpt;
 //		else
 //			throw new FeedBackNotFoundException("FeedBackBy \" " + TrainingCourseName + "\" is not found.");
-//		
+//
 //	}
-	
+
 // -------------------------------------------------------------------------------------------
-	
 
 }

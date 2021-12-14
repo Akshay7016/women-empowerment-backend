@@ -68,7 +68,7 @@ public class SchemeController implements ISchemeController {
 	 * User needs to provide schemeId. Based on that id, this method will find Scheme equal to that id.
 	 */
 //	http://localhost:8082/viewschemebyid/{schemeId}
-	@GetMapping("/viewschemebyid/{schemeId}")
+	@GetMapping("/schemebyid/{schemeId}")
 	public ResponseEntity<Scheme> viewSchemeById(@PathVariable(name = "schemeId") int schemeId) {
 		LOG.info("Controller viewSchemeById");
 		Scheme result = iSchemeService.viewScheme(schemeId);
