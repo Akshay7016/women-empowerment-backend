@@ -7,5 +7,7 @@ import com.capgemini.model.User;
 public interface IUserController {
 	ResponseEntity<User> register(User user);
 
-	ResponseEntity<User> login(String username, String password);
+	ResponseEntity<User> Logout(User user);
+
+	ResponseEntity<User> Login(User user);
 }

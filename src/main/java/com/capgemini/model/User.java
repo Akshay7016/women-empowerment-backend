@@ -6,31 +6,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="user_table")
+@Table(name = "user_table")
 public class User {
-	
+
 	@Id
-	@Column(name="login_id")
+	@Column(name = "login_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int loginId;
-	
-	@Column(name="user_name")
+
+	@Column(name = "user_name", unique = true)
 	private String userName;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
+	@NotEmpty
+	@NotNull
 	private String userPassword;
-	
-	@Column(name="role")
-	private Role role;
+
+	@Column(name = "role")
+	private String role;
 
 	public User() {
 		super();
-		
+
 	}
 
-	public User(int loginId, String userName, String userPassword, Role role) {
+	public User(int loginId, String userName, @NotEmpty @NotNull String userPassword, String role) {
 		super();
 		this.loginId = loginId;
 		this.userName = userName;
@@ -62,11 +66,11 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
-	public Role getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -76,13 +80,4 @@ public class User {
 				+ role + "]";
 	}
 
-	
-
-	
-
-	
-	
-	
-	
-	
 }

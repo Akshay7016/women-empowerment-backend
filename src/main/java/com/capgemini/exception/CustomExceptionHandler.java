@@ -208,5 +208,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<Object> handleLoginException() {
+		LOG.error("handleLoginException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "You need to login first");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+	}
+
+	
 	
 }
